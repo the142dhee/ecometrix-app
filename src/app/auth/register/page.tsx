@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 export default function RegisterPage() {
-  const [accountType, setAccountType] = useState<'analyst' | 'leader' | null>(null);
+  const [accountType, setAccountType] = useState<'worker' | 'customer' | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,47 +21,47 @@ export default function RegisterPage() {
 
   if (!accountType) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="w-full max-w-2xl">
-          <div className="soft-panel p-8">
-            <h1 className="text-3xl font-bold mb-2 text-center">EcoMetrix</h1>
-            <h2 className="text-xl font-semibold mb-8 text-center text-slate-600">
-              Choose your workspace role
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <h1 className="text-3xl font-bold mb-2 text-center">Skill-Bridge</h1>
+            <h2 className="text-xl font-semibold mb-8 text-center text-gray-600">
+              What brings you to Skill-Bridge?
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 {
-                  type: 'analyst',
-                  title: 'I am a Sustainability Analyst',
+                  type: 'worker',
+                  title: 'I\'m a Skilled Professional',
                   description:
-                    'I need to track emissions, model reduction scenarios, and report progress with reliable data.',
-                  icon: 'Data',
+                    'Looking to build my professional profile, connect with customers, and grow my business',
+                  icon: '🔧',
                 },
                 {
-                  type: 'leader',
-                  title: 'I am an Operations or ESG Leader',
+                  type: 'customer',
+                  title: 'I\'m Looking for Services',
                   description:
-                    'I want portfolio-level insights, benchmarks, and executive-ready sustainability reporting.',
-                  icon: 'Exec',
+                    'Finding verified, reliable professionals for my service needs',
+                  icon: '👥',
                 },
               ].map((option) => (
                 <button
                   key={option.type}
-                  onClick={() => setAccountType(option.type as 'analyst' | 'leader')}
-                  className="soft-panel text-left hover:shadow-xl hover:scale-[1.02] transition-all h-full cursor-pointer p-6"
+                  onClick={() => setAccountType(option.type as 'worker' | 'customer')}
+                  className="card text-left hover:shadow-xl hover:scale-105 transition-all h-full cursor-pointer"
                 >
-                  <div className="text-sm uppercase tracking-[0.14em] mb-4 text-teal-700 font-semibold">{option.icon}</div>
-                  <h3 className="text-xl text-teal-800 mb-2">{option.title}</h3>
-                  <p className="text-slate-600">{option.description}</p>
+                  <div className="text-4xl mb-4">{option.icon}</div>
+                  <h3 className="text-xl font-bold mb-2">{option.title}</h3>
+                  <p className="text-gray-600">{option.description}</p>
                 </button>
               ))}
             </div>
 
             <div className="mt-8 text-center">
-              <p className="text-slate-600">
+              <p className="text-gray-600">
                 Already have an account?{' '}
-                <Link href="/auth/login" className="text-teal-700 font-semibold hover:underline">
+                <Link href="/auth/login" className="text-primary font-semibold hover:underline">
                   Sign In
                 </Link>
               </p>
@@ -73,19 +73,19 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-md">
-        <div className="soft-panel p-8">
+        <div className="bg-white rounded-lg shadow-lg p-8">
           <button
             onClick={() => setAccountType(null)}
-            className="text-slate-500 hover:text-slate-700 mb-4"
+            className="text-gray-500 hover:text-gray-700 mb-4"
           >
             ← Back
           </button>
 
-          <h1 className="text-3xl font-bold mb-2 text-center">EcoMetrix</h1>
-          <h2 className="text-xl font-semibold mb-6 text-center text-slate-600">
-            Create your {accountType === 'analyst' ? 'Analyst' : 'Leadership'} Account
+          <h1 className="text-3xl font-bold mb-2 text-center">Skill-Bridge</h1>
+          <h2 className="text-xl font-semibold mb-6 text-center text-gray-600">
+            Create Your {accountType === 'worker' ? 'Professional' : 'Customer'} Account
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -98,7 +98,7 @@ export default function RegisterPage() {
                   setFormData({ ...formData, name: e.target.value })
                 }
                 placeholder="John Doe"
-                className="w-full px-4 py-3 border border-emerald-200 rounded-xl focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 required
               />
             </div>
@@ -112,27 +112,29 @@ export default function RegisterPage() {
                   setFormData({ ...formData, email: e.target.value })
                 }
                 placeholder="your@email.com"
-                className="w-full px-4 py-3 border border-emerald-200 rounded-xl focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 required
               />
             </div>
 
-            {accountType === 'analyst' && (
+            {accountType === 'worker' && (
               <div>
-                <label className="block text-sm font-medium mb-2">Primary Focus Area</label>
+                <label className="block text-sm font-medium mb-2">Trade/Profession</label>
                 <select
                   value={formData.trade}
                   onChange={(e) =>
                     setFormData({ ...formData, trade: e.target.value })
                   }
-                  className="w-full px-4 py-3 border border-emerald-200 rounded-xl focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                   required
                 >
-                  <option value="">Select a focus area</option>
-                  <option value="energy">Energy and Facilities</option>
-                  <option value="procurement">Procurement and Supply Chain</option>
-                  <option value="mobility">Mobility and Logistics</option>
-                  <option value="reporting">Reporting and Compliance</option>
+                  <option value="">Select a trade</option>
+                  <option value="plumbing">Plumbing</option>
+                  <option value="electrical">Electrical</option>
+                  <option value="carpentry">Carpentry</option>
+                  <option value="hvac">HVAC</option>
+                  <option value="roofing">Roofing</option>
+                  <option value="painting">Painting</option>
                 </select>
               </div>
             )}
@@ -146,7 +148,7 @@ export default function RegisterPage() {
                   setFormData({ ...formData, password: e.target.value })
                 }
                 placeholder="••••••••"
-                className="w-full px-4 py-3 border border-emerald-200 rounded-xl focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 required
               />
             </div>
@@ -160,7 +162,7 @@ export default function RegisterPage() {
                   setFormData({ ...formData, confirmPassword: e.target.value })
                 }
                 placeholder="••••••••"
-                className="w-full px-4 py-3 border border-emerald-200 rounded-xl focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 required
               />
             </div>
@@ -171,13 +173,13 @@ export default function RegisterPage() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-slate-600 text-sm">
+            <p className="text-gray-600 text-sm">
               By signing up, you agree to our{' '}
-              <Link href="/terms" className="text-teal-700 hover:underline">
+              <Link href="/terms" className="text-primary hover:underline">
                 Terms of Service
               </Link>{' '}
               and{' '}
-              <Link href="/privacy" className="text-teal-700 hover:underline">
+              <Link href="/privacy" className="text-primary hover:underline">
                 Privacy Policy
               </Link>
             </p>

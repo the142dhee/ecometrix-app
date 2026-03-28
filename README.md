@@ -1,12 +1,12 @@
-# EcoMetrix - Sustainability Analytics Platform
+# Skill-Bridge - Verified Professional Services Platform
 
 ## Overview
 
-EcoMetrix is a full-stack sustainability platform that helps individuals, organizations, and institutions measure, analyze, and reduce carbon emissions with data-driven insights. The platform enables:
+Skill-Bridge is a full-stack web platform that transforms informal skilled workers (plumbers, electricians, carpenters, etc.) into recognized professionals. The platform enables:
 
-- **Individuals**: Track personal footprint and identify practical reduction actions
-- **Organizations**: Monitor operational emissions and prioritize high-impact interventions
-- **Institutions**: Aggregate portfolio-level climate metrics and improve compliance reporting
+- **Skilled Workers**: Build verified profiles, display credentials, manage jobs, and build steady income
+- **Customers**: Find verified, rated professionals and book services with confidence
+- **Platform**: Facilitate secure payments, ratings/reviews, and career growth
 
 ## Features
 
@@ -44,7 +44,7 @@ EcoMetrix is a full-stack sustainability platform that helps individuals, organi
 ## Project Structure
 
 ```
-ecometrix/
+skill-bridge/
 ├── src/
 │   ├── app/                 # Next.js App Router pages
 │   │   ├── auth/           # Authentication pages (login, register)
@@ -173,8 +173,8 @@ vercel deploy
 
 ### Docker
 ```bash
-docker build -t ecometrix .
-docker run -p 3000:3000 ecometrix
+docker build -t skill-bridge .
+docker run -p 3000:3000 skill-bridge
 ```
 
 ### Traditional Server
@@ -196,7 +196,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Support
 
-For support, email support@ecometrix.io or open an issue on GitHub.
+For support, email support@skillbridge.com or open an issue on GitHub.
 
 ---
 

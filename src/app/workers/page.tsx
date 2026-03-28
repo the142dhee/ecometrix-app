@@ -2,117 +2,118 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import EmissionSourceChart from '@/components/charts/EmissionSourceChart';
-import { useAnalytics } from '@/hooks/useAnalytics';
-import { getAnalyticsPayload } from '@/lib/analytics-data';
-
-const workersFallback = getAnalyticsPayload('workers');
 
 export default function WorkersPage() {
-  const [selectedSegment, setSelectedSegment] = useState<string>('all');
-  const { data } = useAnalytics('workers', workersFallback);
+  const [selectedTrade, setSelectedTrade] = useState<string>('all');
 
-  const programs = [
+  const workers = [
     {
       id: 1,
-      name: 'Urban Manufacturing Group',
-      segment: 'industry',
-      baseline: 422,
-      current: 316,
-      reduction: '25%',
-      focus: 'Process heat and supplier emissions optimization',
+      name: 'John Smith',
+      trade: 'Plumbing',
+      rating: 4.9,
+      reviews: 128,
+      description: 'Expert plumber with 15+ years of experience',
+      verified: true,
+      price: '$85/hr',
     },
     {
       id: 2,
-      name: 'North Valley University',
-      segment: 'institution',
-      baseline: 288,
-      current: 230,
-      reduction: '20%',
-      focus: 'Campus energy and transportation footprint tracking',
+      name: 'Sarah Johnson',
+      trade: 'Electrical',
+      rating: 4.8,
+      reviews: 95,
+      description: 'Licensed electrician specializing in residential work',
+      verified: true,
+      price: '$95/hr',
     },
     {
       id: 3,
-      name: 'Helios Retail Chain',
-      segment: 'enterprise',
-      baseline: 364,
-      current: 295,
-      reduction: '19%',
-      focus: 'Store energy benchmarking and refrigeration upgrades',
+      name: 'Mike Wilson',
+      trade: 'Carpentry',
+      rating: 4.7,
+      reviews: 82,
+      description: 'Quality carpentry and custom woodwork',
+      verified: true,
+      price: '$75/hr',
     },
   ];
 
-  const filteredPrograms =
-    selectedSegment === 'all'
-      ? programs
-      : programs.filter((program) => program.segment === selectedSegment);
+  const filteredWorkers =
+    selectedTrade === 'all'
+      ? workers
+      : workers.filter((w) => w.trade.toLowerCase() === selectedTrade);
 
   return (
-    <div className="pb-12">
-      <header className="site-nav">
+    <div>
+      {/* Header */}
+      <header className="bg-white shadow-md">
         <div className="container-custom py-6">
-          <Link href="/" className="text-teal-700 font-semibold mb-4 inline-block hover:text-teal-800">
-            ← Back to EcoMetrix
+          <Link href="/" className="text-primary font-semibold mb-4 inline-block">
+            ← Back Home
           </Link>
-          <h1 className="text-4xl font-bold mb-2">Sector Programs</h1>
-          <p className="text-slate-600 text-lg">
-            Explore active carbon reduction programs by sector and benchmark their progress.
+          <h1 className="text-4xl font-bold mb-2">Find Skilled Professionals</h1>
+          <p className="text-gray-600 text-lg">
+            Browse verified and rated professionals ready to help
           </p>
         </div>
       </header>
 
-      <section className="py-8">
+      {/* Filters */}
+      <section className="bg-gray-50 py-8">
         <div className="container-custom">
           <div className="flex gap-4 flex-wrap">
-            {['all', 'industry', 'institution', 'enterprise'].map((segment) => (
+            {['all', 'plumbing', 'electrical', 'carpentry'].map((trade) => (
               <button
-                key={segment}
-                onClick={() => setSelectedSegment(segment)}
-                className={`px-4 py-2 rounded-full font-medium transition ${
-                  selectedSegment === segment
-                    ? 'bg-teal-700 text-white'
-                    : 'bg-white text-slate-700 hover:bg-emerald-50 border border-emerald-200'
+                key={trade}
+                onClick={() => setSelectedTrade(trade)}
+                className={`px-4 py-2 rounded-lg font-medium transition ${
+                  selectedTrade === trade
+                    ? 'bg-primary text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-100'
                 }`}
               >
-                {segment.charAt(0).toUpperCase() + segment.slice(1)}
+                {trade.charAt(0).toUpperCase() + trade.slice(1)}
               </button>
             ))}
           </div>
         </div>
       </section>
 
-      <section>
+      {/* Workers Grid */}
+      <section className="py-12">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-6">
-            <div className="space-y-5">
-              {filteredPrograms.map((program) => (
-                <div key={program.id} className="soft-panel p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredWorkers.map((worker) => (
+              <div key={worker.id} className="card">
+                <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h3 className="text-2xl text-teal-800">{program.name}</h3>
-                    <p className="text-sm text-slate-600 mt-1">{program.focus}</p>
+                    <h3 className="text-xl font-bold">{worker.name}</h3>
+                    <p className="text-sm text-gray-600">{worker.trade}</p>
                   </div>
-                  <div className="grid sm:grid-cols-3 gap-4 mt-5 text-sm">
-                    <div>
-                      <p className="text-slate-500">Baseline</p>
-                      <p className="font-bold text-lg">{program.baseline} tCO2e</p>
-                    </div>
-                    <div>
-                      <p className="text-slate-500">Current</p>
-                      <p className="font-bold text-lg">{program.current} tCO2e</p>
-                    </div>
-                    <div>
-                      <p className="text-slate-500">Reduction</p>
-                      <p className="font-bold text-lg text-emerald-700">{program.reduction}</p>
-                    </div>
-                  </div>
+                  {worker.verified && (
+                    <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">
+                      ✓ Verified
+                    </span>
+                  )}
                 </div>
-              ))}
-            </div>
 
-            <EmissionSourceChart
-              title="Portfolio Emissions Mix"
-              items={data.sources}
-            />
+                <p className="text-gray-600 mb-4">{worker.description}</p>
+
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-yellow-400">★</span>
+                  <span className="font-semibold">{worker.rating}</span>
+                  <span className="text-gray-600 text-sm">
+                    ({worker.reviews} reviews)
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <span className="text-primary font-bold">{worker.price}</span>
+                  <button className="btn-primary text-sm">View Profile</button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

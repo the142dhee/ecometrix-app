@@ -14,12 +14,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-md">
-        <div className="soft-panel p-8">
-          <h1 className="text-3xl font-bold mb-2 text-center">EcoMetrix</h1>
-          <h2 className="text-xl font-semibold mb-6 text-center text-slate-600">
-            Sign in to your sustainability workspace
+        <div className="bg-white rounded-lg shadow-lg p-8">
+          <h1 className="text-3xl font-bold mb-2 text-center">Skill-Bridge</h1>
+          <h2 className="text-xl font-semibold mb-6 text-center text-gray-600">
+            Sign In to Your Account
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -29,8 +29,8 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@organization.com"
-                className="w-full px-4 py-3 border border-emerald-200 rounded-xl focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                placeholder="your@email.com"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 required
               />
             </div>
@@ -42,7 +42,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 border border-emerald-200 rounded-xl focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 required
               />
             </div>
@@ -53,16 +53,16 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-slate-600">
+            <p className="text-gray-600">
               Don't have an account?{' '}
-              <Link href="/auth/register" className="text-teal-700 font-semibold hover:underline">
+              <Link href="/auth/register" className="text-primary font-semibold hover:underline">
                 Sign Up
               </Link>
             </p>
           </div>
 
           <div className="mt-4 text-center">
-            <Link href="/" className="text-sm text-slate-600 hover:text-teal-700">
+            <Link href="/" className="text-sm text-gray-600 hover:text-primary">
               Back to Home
             </Link>
           </div>
