@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply m-0 p-0 box-border;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply text-slate-900;
+  font-family: var(--font-space-grotesk), 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(147, 197, 114, 0.22), transparent 36%),
+    radial-gradient(circle at 90% 0%, rgba(14, 116, 144, 0.2), transparent 30%),
+    linear-gradient(180deg, #f6fbf6 0%, #eef5f2 45%, #f8faf8 100%);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-source-serif), Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+:root {
+  --eco-ink: #0f2c2b;
+  --eco-teal: #0f766e;
+  --eco-mint: #a7f3d0;
+  --eco-lime: #84cc16;
+  --eco-clay: #a16207;
+  --panel: #ffffffcc;
+  --border-soft: #bbd7c8;
+}
+
+a {
+  @apply transition-colors;
+}
+
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+  @apply px-6 py-3 rounded-full text-white font-semibold;
+  background: linear-gradient(120deg, #0f766e 0%, #16a34a 100%);
+  box-shadow: 0 10px 28px rgba(15, 118, 110, 0.28);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.btn-secondary {
+  @apply px-6 py-3 rounded-full font-semibold;
+  color: var(--eco-ink);
+  border: 1px solid rgba(15, 118, 110, 0.35);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.site-nav {
+  border-bottom: 1px solid rgba(187, 215, 200, 0.7);
+  background: rgba(248, 252, 249, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.soft-panel {
+  border: 1px solid var(--border-soft);
+  background: var(--panel);
+  border-radius: 1.25rem;
+  box-shadow: 0 14px 34px rgba(15, 44, 43, 0.08);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+}
+
+.metrics-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.metrics-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -20% -60% auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(132, 204, 22, 0.22), transparent 68%);
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+.fade-delay-1 {
+  animation-delay: 0.15s;
+}
+
+.fade-delay-2 {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
